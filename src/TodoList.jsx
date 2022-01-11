@@ -4,6 +4,7 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItem";
+import Todo from "./Todo";
 
 const TodoList = (props) => {
   return (
@@ -11,7 +12,9 @@ const TodoList = (props) => {
         <List> 
       {props.todos.map((todo) => (
           <> 
-        <ListItemText>{todo.task}</ListItemText>
+        <ListItemText>
+          <Todo task={todo.task} key={todo.id} completed={completed}/>
+        </ListItemText>
         <Divider/>
         </>
       ))}
