@@ -15,7 +15,7 @@ const TodoForm =({addTodo})=>{
        }}>
        <TextFiled
         value={value}
-         onChange={handleChange} 
+        onChange={handleChange} 
          margin='normal'
          label="Add New Todo"
          fullWidth
