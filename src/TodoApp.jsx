@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
@@ -8,20 +8,26 @@ import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import { v4 as uuidv4 } from 'uuid';
 
-const TodoApp = (props) => {
-  const initialTodos = [
-    { id: 1, task: "Clean Fishtank", completed: false },
-    { id: 2, task: "Wash Car", completed: true },
-    { id: 3, task: "Grow Beard", completed: false },
-  ];
+// const initialTodos = [
+//   { id: 1, task: "Clean Fishtank", completed: false },
+//   { id: 2, task: "Wash Car", completed: true },
+//   { id: 3, task: "Grow Beard", completed: false },
+// ];
+const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]")
 
+const TodoApp = (props) => {
   const [todos, setTodos] = useState(initialTodos);
+
+  useEffect(()=>{
+    window.localStorage.setItem("todos", JSON.stringify(todos))
+  },[todos]);
+
+
   const addTodo = (newTodoText) => {
     setTodos([...todos, { id: uuidv4(), task: newTodoText, completed: false }]);
     
   };
   
-
   const removeTodo=(todoId)=>{
    
     const updatedTodos= todos.filter(todo=> todo.id  !== todoId );

@@ -5,7 +5,9 @@ import Divider from "@material-ui/core/Divider";
 import Todo from "./Todo";
 
 const TodoList = (props) => {
-  return (
+ 
+    if(props.todos.length)
+    return ( 
     <Paper>
       <List>
         {props.todos.map((todo) => (
@@ -20,12 +22,13 @@ const TodoList = (props) => {
             editTodo={props.editTodo}
              />
         
-            <Divider />
+             <Divider/>
           </>
         ))}
       </List>
     </Paper>
   );
+  return null;
 };
 
 export default TodoList;
